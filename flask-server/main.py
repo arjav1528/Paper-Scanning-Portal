@@ -3,8 +3,6 @@ import os
 import json
 import requests
 
-PORT=os.environ.get('PORT')
-print("PORT:", PORT)
 
 
 app = Flask(__name__)
@@ -18,4 +16,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(port=PORT, debug=True)
+    app.run()
