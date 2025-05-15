@@ -1,22 +1,42 @@
 "use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [papers, setPapers] = useState<Array<{
+    left: string;
+    top: string;
+    duration: string;
+    delay: string;
+    rotation: string;
+  }>>([]);
+
+  useEffect(() => {
+    const newPapers = [...Array(10)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      duration: `${Math.random() * 10 + 15}s`,
+      delay: `${Math.random() * 5}s`,
+      rotation: `rotate(${Math.random() * 360}deg)`,
+    }));
+    setPapers(newPapers);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-950">
       {/* Floating paper animations in background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(10)].map((_, i) => (
+        {papers.map((paper, i) => (
           <div
             key={i}
             className="absolute animate-float"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDuration: `${Math.random() * 10 + 15}s`,
-              animationDelay: `${Math.random() * 5}s`,
+              left: paper.left,
+              top: paper.top,
+              animationDuration: paper.duration,
+              animationDelay: paper.delay,
               opacity: 0.3,
-              transform: `rotate(${Math.random() * 360}deg)`,
+              transform: paper.rotation,
             }}
           >
             <svg
