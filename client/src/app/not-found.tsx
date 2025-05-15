@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import FloatingPapers from "@/components/FloatingPaper";
 
 export default function NotFound() {
   const router = useRouter();
@@ -20,42 +21,10 @@ export default function NotFound() {
   return (
     <div className={`min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-950 flex items-center justify-center transition-opacity duration-500 ease-in-out ${isNavigating ? "opacity-0" : "opacity-100"}`}>
       {/* Floating paper animations in background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDuration: `${Math.random() * 10 + 15}s`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: 0.3,
-              transform: `rotate(${Math.random() * 360}deg)`,
-            }}
-          >
-            <svg
-              width="60"
-              height="70"
-              viewBox="0 0 60 70"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className={i % 2 === 0 ? "text-red-300 dark:text-red-700" : "text-gray-400 dark:text-gray-200"}
-            >
-              <path
-                d="M5 0H55L60 10V70H0V10L5 0Z"
-                fill="currentColor"
-              />
-              <path
-                d="M10 20H50M10 35H50M10 50H30"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="text-white dark:text-gray-500"
-              />
-            </svg>
-          </div>
-        ))}
-      </div>
+      <FloatingPapers 
+        count={15} 
+        alternateColors={true} 
+      />
 
       <div className="relative z-10 container mx-auto px-4 py-12 text-center">
         <div className="mb-8 relative">
@@ -102,17 +71,6 @@ export default function NotFound() {
       </div>
 
       <style jsx global>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0) rotate(0deg);
-          }
-          50% {
-            transform: translateY(-20px) rotate(5deg);
-          }
-        }
-        .animate-float {
-          animation: float ease-in-out infinite;
-        }
         @keyframes scan {
           0% {
             top: 0;
