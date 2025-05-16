@@ -1,10 +1,9 @@
-import { connectToDatabase, getDatabase } from "@/lib/mongodb";
+import { connectToDatabase } from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    await connectToDatabase();
-    const db = await getDatabase().db("users");
+    const db = (await connectToDatabase()).db("paper-scanning-software");
     const usersCollection = db.collection("users");
     
     // Fetch all users and convert to array
