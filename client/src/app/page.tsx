@@ -1,8 +1,20 @@
 "use client";
+import { SignInButton, useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import FloatingPapers from "@/components/FloatingPaper";
 import Image from "next/image";
 
 export default function Home() {
+  const { isLoaded, isSignedIn } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoaded && isSignedIn) {
+      router.push("/dashboard");
+    }
+  }, [isLoaded, isSignedIn, router]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-950">
       {/* Floating paper animations in background */}
@@ -29,12 +41,12 @@ export default function Home() {
           </h1>
           <p className="mt-6 text-xl text-center text-gray-600 dark:text-gray-300 max-w-3xl">
             Streamline the assessment process with our comprehensive exam management system. 
-            Upload, grade, and view results - all in one integrated platform.
+            For professors and teaching assistants to upload, grade, and manage exams efficiently.
           </p>
         </header>
 
         {/* Features Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {[
             {
               icon: "📝",
@@ -43,13 +55,8 @@ export default function Home() {
             },
             {
               icon: "✓",
-              title: "For Assistants",
+              title: "For Teaching Assistants",
               description: "Access, grade and provide feedback on student submissions in one organized interface."
-            },
-            {
-              icon: "📊",
-              title: "For Students",
-              description: "View your grades and feedback for mid-term and final exams across all courses."
             }
           ].map((feature, index) => (
             <div 
@@ -68,19 +75,19 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-8 md:mb-0 md:mr-8">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Ready to Get Started?
+                Faculty Access Only
               </h2>
               <p className="text-blue-100 text-lg max-w-lg">
-                Streamline your exam workflow and enhance your assessment experience with our digital solution.
+                This portal is exclusively for professors and teaching assistants to manage and grade exam papers efficiently.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="px-8 py-4 bg-white text-blue-600 font-bold rounded-full hover:bg-blue-50 transition-colors shadow-lg">
-                Sign in with your BITSMail
-              </button>
-              <button className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-colors">
-                Learn More
-              </button>
+              <SignInButton>
+                <button className="px-8 py-4 bg-white text-blue-600 font-bold rounded-full hover:bg-blue-50 transition-colors shadow-lg">
+                  Sign in with your BITSMail
+                </button>
+              </SignInButton>
+              
             </div>
           </div>
         </div>
