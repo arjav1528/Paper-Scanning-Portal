@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import FloatingPapers from "@/components/FloatingPaper";
 import Image from "next/image";
 import { useClerk } from "@clerk/nextjs";
+import Starfield from "react-starfield";
 
 export default function NotAuthorized() {
   const router = useRouter();
@@ -22,11 +22,14 @@ export default function NotAuthorized() {
 
   return (
     <div className={`min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-950 flex items-center justify-center transition-opacity duration-500 ease-in-out ${isNavigating ? "opacity-0" : "opacity-100"}`}>
-      {/* Floating paper animations in background */}
-      <FloatingPapers 
-        count={8} 
-        alternateColors={true} 
-      />
+      {/* Background Starfield */}
+      <Starfield
+      starCount={1000}
+      starColor={[255, 255, 255]}
+      speedFactor={0.05}
+      backgroundColor="black"
+       />
+      
 
       <div className="relative z-10 container mx-auto px-4 py-12 text-center">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 max-w-md mx-auto border border-gray-100 dark:border-gray-700">

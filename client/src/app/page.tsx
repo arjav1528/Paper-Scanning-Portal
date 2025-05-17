@@ -2,8 +2,8 @@
 import { SignInButton, useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import FloatingPapers from "@/components/FloatingPaper";
 import Image from "next/image";
+import Starfield from "react-starfield";
 
 export default function Home() {
   const { isLoaded, isSignedIn } = useAuth();
@@ -17,8 +17,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-950">
-      {/* Floating paper animations in background */}
-      <FloatingPapers count={10} />
+      {/* Background Starfield */}
+      <Starfield
+      starCount={1000}
+      starColor={[255, 255, 255]}
+      speedFactor={0.05}
+      backgroundColor="black"
+      
+       />
 
       <div className="relative z-10 container mx-auto px-4 py-12">
         {/* Hero Section */}

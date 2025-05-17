@@ -1,9 +1,7 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import FloatingPapers from "@/components/FloatingPaper";
+import Starfield from "react-starfield";
 
 export default function NotFound() {
   const router = useRouter();
@@ -20,46 +18,35 @@ export default function NotFound() {
 
   return (
     <div className={`min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-950 flex items-center justify-center transition-opacity duration-500 ease-in-out ${isNavigating ? "opacity-0" : "opacity-100"}`}>
-      {/* Floating paper animations in background */}
-      <FloatingPapers 
-        count={15} 
-        alternateColors={true} 
+      {/* Background Starfield */}
+      <Starfield
+        starCount={1000}
+        starColor={[255, 255, 255]}
+        speedFactor={0.05}
+        backgroundColor="black"
       />
 
-      <div className="relative z-10 container mx-auto px-4 py-12 text-center">
+      <div className="absolute z-10 container mx-auto px-4 py-12 text-center">
         <div className="mb-8 relative">
-          <div className="text-[180px] font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-none">
+          <div className="text-[180px] font-extrabold font-space-mono bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-none">
             404
           </div>
           <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full"></div>
         </div>
         
-        <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        <h1 className="text-3xl md:text-5xl font-bold font-outfit mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent tracking-tight">
           Page Not Found
         </h1>
         
         <div className="max-w-xl mx-auto relative">
           <div className="mb-10">
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
+            <p className="text-xl font-inter text-gray-600 dark:text-gray-300 mb-8">
               Oops! Looks like this page got lost in our filing system.
             </p>
-            
-            <div className="relative w-48 h-48 mx-auto mb-10">
-              <div className="absolute inset-4 rounded-full overflow-hidden bg-white dark:bg-gray-800 flex items-center justify-center">
-                <Image
-                  src="/Logo/bits_logo.png"
-                  alt="BITS Logo"
-                  width={100}
-                  height={100}
-                  className="opacity-50"
-                />
-                {/* <div className="absolute w-full h-2 bg-red-500/50 animate-scan"></div> */}
-              </div>
-            </div>
-            
-            <button 
+
+            <button
               onClick={handleNavigateHome}
-              className={`px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full transition-all shadow-lg inline-block
+              className={`px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold font-outfit rounded-full transition-all shadow-lg inline-block
                 ${isNavigating 
                   ? "scale-105 opacity-70 animate-pulse" 
                   : "hover:opacity-90 hover:scale-105"}`}
@@ -71,6 +58,30 @@ export default function NotFound() {
       </div>
 
       <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap');
+        
+        :root {
+          --font-outfit: 'Outfit', sans-serif;
+          --font-space-mono: 'Space Mono', monospace;
+          --font-inter: 'Inter', sans-serif;
+        }
+        
+        body {
+          font-family: var(--font-inter);
+        }
+        
+        .font-outfit {
+          font-family: var(--font-outfit);
+        }
+        
+        .font-space-mono {
+          font-family: var(--font-space-mono);
+        }
+        
+        .font-inter {
+          font-family: var(--font-inter);
+        }
+        
         @keyframes scan {
           0% {
             top: 0;

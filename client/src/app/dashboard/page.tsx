@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
-import FloatingPapers from "@/components/FloatingPaper";
+import Starfield from "react-starfield";
 
 export default function Dashboard() {
   const [selectedCourse, setSelectedCourse] = useState("");
@@ -74,8 +74,14 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-950">
-      {/* Floating paper animations in background - fewer papers for less distraction */}
-      <FloatingPapers count={5} />
+      {/* Background Starfield */}
+      <Starfield
+      starCount={1000}
+      starColor={[255, 255, 255]}
+      speedFactor={0.05}
+      backgroundColor="black"
+      
+       />
       
       {/* Navbar */}
       <nav className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
