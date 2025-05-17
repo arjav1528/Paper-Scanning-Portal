@@ -91,7 +91,14 @@ export async function POST(req: NextRequest) {
         courseIds : []
       }
 
-      const result = await collection.insertOne({user});
+      const result = await collection.insertOne({
+        clerkId: user.clerkId,
+        name: user.name,
+        email: user.email,
+        imageUrl: user.imageUrl,
+        role: user.role,
+        courseIds: user.courseIds
+      });
       if(result.acknowledged) {
         console.log('User created:', result.insertedId);
       }

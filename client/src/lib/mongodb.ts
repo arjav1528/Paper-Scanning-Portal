@@ -2,7 +2,6 @@ import { MongoClient, ServerApiVersion } from "mongodb";
 
 
 const MONGO_URI : string = process.env.MONGO_URI ?? "";
-console.log("Mongo URI", MONGO_URI);
 if (!MONGO_URI) {
     throw new Error("Please define the MONGO_URI environment variable");
 }
