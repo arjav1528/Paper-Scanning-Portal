@@ -6,8 +6,8 @@ export interface User {
   name: string;
   email: string;
   imageUrl: string;
-  role: "TA" | "PROFESSOR";
-  courseIds: string[]; // Course._id[]
+  role: "TA" | "PROFESSOR" | "UNAUTHORIZED"; // User role
+  courseIds?: string[]; // Course._id[]
 }
 
 export interface Course {
