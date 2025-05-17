@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Image from "next/image";
 import Starfield from "react-starfield";
+import { motion } from "motion/react";
 
 export default function Home() {
   const { isLoaded, isSignedIn } = useAuth();
@@ -65,14 +66,15 @@ export default function Home() {
               description: "Access, grade and provide feedback on student submissions in one organized interface."
             }
           ].map((feature, index) => (
-            <div 
+            <motion.div 
+              whileHover={{ scale: 1.1 }}
               key={index}
-              className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700"
+              className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700"
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
               <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">{feature.title}</h3>
               <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -89,11 +91,15 @@ export default function Home() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <SignInButton>
-                <button className="px-8 py-4 bg-white text-blue-600 font-bold rounded-full hover:bg-blue-50 transition-colors shadow-lg">
+                <motion.div
+                  className="bg-white text-blue-500 font-semibold py-3 px-6 rounded-lg shadow-lg text-center"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.8 }}
+                >
                   Sign in with your BITSMail
-                </button>
+                </motion.div>
               </SignInButton>
-              
+
             </div>
           </div>
         </div>
