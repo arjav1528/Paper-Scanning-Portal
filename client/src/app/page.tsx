@@ -67,7 +67,7 @@ export default function Home() {
             }
           ].map((feature, index) => (
             <motion.div 
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               key={index}
               className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700"
             >
